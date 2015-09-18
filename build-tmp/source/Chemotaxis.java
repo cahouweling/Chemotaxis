@@ -1,6 +1,22 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
 Bacteria [] colony;
 Food juan;
- void setup()   
+ public void setup()   
  {     
  	size(500,500);
  	colony = new Bacteria [1000];
@@ -11,13 +27,13 @@ Food juan;
  	juan = new Food(250,250);
  	frameRate(20);
  }   
- void draw()   
+ public void draw()   
  {    
  	background(255);
  	for(int i = 0; i < colony.length; i++)
  	{
- 		//colony[i].gridWalk();
- 		colony[i].walk();
+ 		colony[i].gridWalk();
+ 		//colony[i].walk();
  		colony[i].move();
  		colony[i].show();
  	}
@@ -35,7 +51,7 @@ Food juan;
  		bblue = (int)(Math.random()*256) - 1;
  		bgreen = (int)(Math.random()*256) - 1;
  	}
- 	void gridWalk()
+ 	public void gridWalk()
  	{
  		int direction = (int)(Math.random()*4) + 1;
  		if(direction == 1)
@@ -55,12 +71,12 @@ Food juan;
  			by = by - 5;
  		}
  	}
- 	void walk()
+ 	public void walk()
  	{
  		bx = bx + (int)(Math.random()*9) - 4;
  		by = by + (int)(Math.random()*9) - 4;
  	}
- 	void move()
+ 	public void move()
  	{
  		if(juan.fx + 15 > bx)
  		{
@@ -79,7 +95,7 @@ Food juan;
  			by = by + (int)(Math.random()*9) - 5;
  		}
  	}
- 	void show()
+ 	public void show()
  	{
  		fill(bred,bblue,bgreen);
  		if(bx < 0)
@@ -109,7 +125,7 @@ Food juan;
  		fx = x - 15;
  		fy = y - 15;
  	}
- 	void place()
+ 	public void place()
  	{
  		if(mousePressed == true)
  		{
@@ -117,7 +133,7 @@ Food juan;
  			fy = mouseY - 15;
  		}
  	}
- 	void show()
+ 	public void show()
  	{
  		noStroke();
  		fill(255, 185, 115);
@@ -129,3 +145,12 @@ Food juan;
  		ellipse(fx + 12, fy + 6, 6, 6);
  	}
  }  
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
