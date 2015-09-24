@@ -19,7 +19,7 @@ Food juan;
  public void setup()   
  {     
  	size(500,500);
- 	colony = new Bacteria [1000];
+ 	colony = new Bacteria [200];
  	for(int i = 0; i < colony.length; i++)
  	{
  		colony[i] = new Bacteria(250,250);
@@ -30,11 +30,14 @@ Food juan;
  public void draw()   
  {    
  	background(255);
+ 	fill(130,0,0,130);
+ 	ellipse(50,50,50,50);
  	for(int i = 0; i < colony.length; i++)
  	{
- 		colony[i].gridWalk();
+ 		//colony[i].gridWalk();
  		//colony[i].walk();
  		colony[i].move();
+ 		colony[i].teleport();
  		colony[i].show();
  	}
  	juan.place();
@@ -84,7 +87,11 @@ Food juan;
  		}
  		else if(juan.fx + 15 < bx)
  		{
- 			bx = bx + (int)(Math.random()*9) - 5;
+ 			bx = bx - (int)(Math.random()*9) - 3;
+ 		}
+ 		else
+ 		{
+ 			bx = bx + (int)(Math.random()*9) - 4;	
  		}
  		if(juan.fy + 15 > by)
  		{
@@ -92,8 +99,21 @@ Food juan;
  		}
  		else if(juan.fy + 15 < by)
  		{
- 			by = by + (int)(Math.random()*9) - 5;
+ 			by = by - (int)(Math.random()*9) - 3;
  		}
+ 		else 
+ 		{
+ 			by = by + (int)(Math.random()*9) - 4;
+ 		}
+ 	}
+ 	public void teleport()
+ 	{
+ 		if(juan.fy <= by && by <= juan.fy + 30 && juan.fx <= bx && bx <= juan.fx + 30)
+ 		{
+ 			bx = 50;
+ 			by = 50;
+ 		}
+
  	}
  	public void show()
  	{
