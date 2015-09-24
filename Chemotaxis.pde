@@ -63,13 +63,13 @@ Food juan;
  		bx = bx + (int)(Math.random()*9) - 4;
  		by = by + (int)(Math.random()*9) - 4;
  	}
- 	void move()
+ void move()
  	{
- 		if(juan.fx + 15 > bx)
+ 		if(juan.fx - 10> bx )
  		{
  			bx = bx + (int)(Math.random()*9) - 3;
  		}
- 		else if(juan.fx + 15 < bx)
+ 		else if(juan.fx + 40 < bx)
  		{
  			bx = bx - (int)(Math.random()*9) - 3;
  		}
@@ -77,11 +77,11 @@ Food juan;
  		{
  			bx = bx + (int)(Math.random()*9) - 4;	
  		}
- 		if(juan.fy + 15 > by)
+ 		if(juan.fy - 10 > by)
  		{
  			by = by + (int)(Math.random()*9) - 3;
  		}
- 		else if(juan.fy + 15 < by)
+ 		else if(juan.fy + 40 < by)
  		{
  			by = by - (int)(Math.random()*9) - 3;
  		}
